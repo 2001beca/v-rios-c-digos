@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define COMPRIMENTO_DA_PILHA 10
+struct pilha{
+ int inicio_da_pilha;
+ int itens[COMPRIMENTO_DA_PILHA];
+};
+int pilha_vazia (struct pilha *pq){
+ if(pq->inicio_da_pilha ==-1){
+ return -1;
+ }
+ return 0;
+}
+void pop(struct pilha *pq){
+ if(pilha_vazia(pq)){
+ printf("\n A pilha se encontra vazia");
+ 
+ }
+ pq->itens[pq->inicio_da_pilha--];
+ return;
+}
+void push(struct pilha *pq, int valor){
+ if(pq->inicio_da_pilha == (COMPRIMENTO_DA_PILHA-1)){
+ printf("\n A pilha está cheia");
+ }
+ 
+ pq-> itens[++(pq->inicio_da_pilha)] = valor;
+ 
+ return;
+}
+int comprimento_Pilha(struct pilha *pq){
+ return pq->inicio_da_pilha+1;
+}
+int elemento_do_Topo(struct pilha *pq){
+ return pq->itens[pq->inicio_da_pilha];
+}
+void imprimir_elemento(struct pilha *pq){
+ for(int i=9; i>=0; i--){
+ 
+ printf("\n Item da pilha %d", pq->itens[i]); 
+ 
+ }
+}
+void operacao_da_pilha(struct pilha *pq, int valor){
+ 
+ if(valor%2 == 0){
+ push(pq,valor);
+ }else{
+ pq->itens[pq->inicio_da_pilha--];
+ } 
+ 
+}
+int main() {
+ struct pilha plh;
+ plh.inicio_da_pilha = -1;
+ int opcao;
+ printf("\n Informe os 10 primeiros números inteiros que deseja adicionar a sua 
+pilha\n");
+ 
+ for(int i=0; i<10;i++){
+ 
+ scanf("\n %d", &opcao);
+ operacao_da_pilha(&plh,opcao);
+ }
+ 
+ 
+ imprimir_elemento(&plh);
+ 
+ return 0;
+}
